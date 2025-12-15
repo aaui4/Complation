@@ -1,14 +1,16 @@
 %{
-#include "tp2.tab.h"
-#include <stdio.h>
+#include "y.tab.h"
 %}
 
 %%
 "int"                  { return mc; }
-[a-zA-Z][a-zA-Z0-9]*   { return var; }
+bool                   { return BOOL;}
+false                  { return FALSE;}
+[ \t\n];               /* تجاهل الفراغات */
 ","                    { return ver; }
 ";"                    { return pv; }
-[ \t\n]+               ;   /* تجاهل الفراغات */
+=                      { return EQUAL;}
+[a-zA-Z][a-zA-Z0-9]*   { return var; }
 .                      { printf("Symbole inconnu: %s\n", yytext); }
 %%
 
